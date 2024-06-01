@@ -44,13 +44,15 @@ async function main() {
     const releases: Release[] = await response.json();
 
     if (releases.length)
-        console.log(`\n  Releases:`);
+        console.log(`Releases:`);
 
-    releases.forEach(release => {
-        console.log(`   * ${release.tag_name}`);
+    releases.forEach((release, index) => {
+        console.log(` * ${release.tag_name}${index === 0 ? ' (latest)' : ''}`);
 
         release.assets.forEach(asset => {
-            console.log(`     - \u001b]8;;${asset.browser_download_url}\u0007${asset.name}\u001b]8;;\u0007`);
+            console.log(`   - \u001b]8;;${asset.browser_download_url}\u0007${asset.name}\u001b]8;;\u0007`);
         });
+
+        console.log(``);
     });
 }
