@@ -3,7 +3,7 @@ import './css/style.css';
 
 window.addEventListener('DOMContentLoaded', () => {
     import('./terminal').then(({ initiate_termial }) => {
-        initiate_termial();
+        const terminal = initiate_termial();
 
         main();
     });
