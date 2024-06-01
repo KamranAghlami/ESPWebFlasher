@@ -37,7 +37,10 @@ async function main() {
     const response = await fetch(`https://api.github.com/repos/${repository_url}/releases`);
 
     if (!response.ok) {
-        console.error('Failed to fetch releases');
+        const error = await response.json();
+
+        console.error(error.message);
+
         return;
     }
 
