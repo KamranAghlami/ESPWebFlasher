@@ -11,15 +11,21 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
 
       - name: Build
         run: |
           npm install
           npm run build
-
+          
+      - name: Release
+        uses: actions/configure-pages@v3
+      
+      - uses: actions/upload-pages-artifact@v2
+        with:
+          path: 'dist'
+      - uses: actions/deploy-pages@v4
+        
       - name: GitHubAssistantBot Preprocess
         id: preprocess_commits
         if: success() || failure()
