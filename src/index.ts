@@ -4,6 +4,11 @@ import './css/style.css';
 window.addEventListener('DOMContentLoaded', () => {
     import('./terminal').then(({ initiate_termial }) => {
         initiate_termial();
+
+        console.warn(`\n  ┌───────────────────────── SORRY ──────────────────────────┐`)
+        console.warn("  │ This site is under construction, please come back later. │")
+        console.warn(`  └──────────────────────────────────────────────────────────┘\n`)
+
         main();
     });
 });
@@ -28,7 +33,7 @@ async function main() {
     const repository_url = get_repository_url();
 
     if (!repository_url) {
-        console.error('Error: Repository URL not specified');
+        console.error('    Error: Repository URL not specified');
 
         return;
     }
@@ -46,13 +51,13 @@ async function main() {
     const releases: Release[] = await response.json();
 
     if (releases.length)
-        console.log(`Releases:`);
+        console.info(`    Releases:`);
 
     releases.forEach((release, index) => {
-        console.log(` * ${release.tag_name}${index === 0 ? ' (latest)' : ''}`);
+        console.info(`     * ${release.tag_name}${index === 0 ? ' (latest)' : ''}`);
 
         release.assets.forEach(asset => {
-            console.log(`   - \u001b]8;;${asset.browser_download_url}\u0007${asset.name}\u001b]8;;\u0007`);
+            console.info(`       - \u001b]8;;${asset.browser_download_url}\u0007${asset.name}\u001b]8;;\u0007`);
         });
 
         console.log(``);
