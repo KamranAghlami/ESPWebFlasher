@@ -5,9 +5,11 @@ window.addEventListener('DOMContentLoaded', () => {
     import('./terminal').then(({ initiate_termial }) => {
         initiate_termial();
 
-        console.warn(`\n  ┌───────────────────────── SORRY ──────────────────────────┐`)
-        console.warn("  │ This site is under construction, please come back later. │")
-        console.warn(`  └──────────────────────────────────────────────────────────┘\n`)
+        console.warn();
+        console.warn(`  ┌───────────────────────── SORRY ──────────────────────────┐`)
+        console.warn(`  │ This site is under construction, please come back later. │`)
+        console.warn(`  └──────────────────────────────────────────────────────────┘`)
+        console.warn()
 
         main();
     });
